@@ -1,11 +1,8 @@
-# app.py
 import streamlit as st
 from diffusers import StableDiffusionPipeline
 import torch
 
-# ----------------------------
-# 1️⃣ Load the model
-# ----------------------------
+
 @st.cache_resource(show_spinner=False)
 def load_model():
     model_id = "runwayml/stable-diffusion-v1-5"
@@ -22,21 +19,16 @@ def load_model():
 
 pipe = load_model()
 
-# ----------------------------
-# 2️⃣ User Interface
-# ----------------------------
+
 st.title("🎨 Text to Image Generator")
 st.write("Convert any text description into an image using Stable Diffusion")
 
-# Make the text area empty by default so user must input
 prompt = st.text_area(
     "Enter your description (Prompt):",
     ""  # empty by default
 )
 
-# ----------------------------
-# 3️⃣ Generate Image
-# ----------------------------
+
 if st.button("✨ Generate Image"):
     if prompt.strip() == "":
         st.warning("❗ Please enter a prompt before clicking the button.")
